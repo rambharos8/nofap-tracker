@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NoFap Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            padding: 30px;
+        }
+        h1 { color: #333; }
+        .level {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            background: #ddd;
+            display: inline-block;
+            width: 250px;
+            transition: background 0.3s, color 0.3s;
+        }
+        .active {
+            background: gold;
+            color: black;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>NoFap Ranking System</h1>
+    <h2 id="days">Loading...</h2>
+    <div id="levels">
+        <div class="level" id="Mortal">Day 1-6: Mortal (नश्वर)</div>
+        <div class="level" id="Soldier">Day 7-13: Soldier (सैनिक)</div>
+        <div class="level" id="Captain">Day 14-20: Captain (कप्तान)</div>
+        <div class="level" id="General">Day 21-29: General (जनरल)</div>
+        <div class="level" id="Commander">Day 30-59: Commander (कमांडर)</div>
+        <div class="level" id="Warrior">Day 60-89: Warrior (योद्धा)</div>
+        <div class="level" id="Demigod">Day 90+: Demigod (अर्ध-देव)</div>
+        <div class="level" id="NoFapGod">Day 180+: No Fap God (नोफैप देव)</div>
+        <div class="level" id="Titan">Day 365+: Titan (दैत्य)</div>
+        <div class="level" id="Primordial">Day 730+: Primordial (आदिम)</div>
+    </div>
+
+    <script>
+        const startDate = new Date("2025-07-19");
+        const today = new Date();
+        const diffTime = today - startDate;
+        const daysPassed = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        document.getElementById("days").innerText = `Days Passed: ${daysPassed}`;
+
+        const levels = [
+            { name: "Mortal", min: 1, max: 6 },
+            { name: "Soldier", min: 7, max: 13 },
+            { name: "Captain", min: 14, max: 20 },
+            { name: "General", min: 21, max: 29 },
+            { name: "Commander", min: 30, max: 59 },
+            { name: "Warrior", min: 60, max: 89 },
+            { name: "Demigod", min: 90, max: 179 },
+            { name: "NoFapGod", min: 180, max: 364 },
+            { name: "Titan", min: 365, max: 729 },
+            { name: "Primordial", min: 730, max: Infinity }
+        ];
+
+        let currentLevel = levels.find(l => daysPassed >= l.min && daysPassed <= l.max);
+        if (currentLevel) {
+            document.getElementById(currentLevel.name).classList.add("active");
+        }
+    </script>
+</body>
+</html>
